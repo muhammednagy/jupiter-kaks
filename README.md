@@ -4,6 +4,8 @@
 
 A Chrome extension that shows Jupiter's Estonian subtitles with English translations underneath. Free, no account, no API key, no build tools required. This is an independent project, unaffiliated with ERR or the University of Tartu.
 
+Report bugs or suggest improvements in [GitHub Issues](https://github.com/muhammednagy/jupiter-kaks/issues).
+
 ## Install
 
 1. Download and unzip this repository, or clone it with Git.

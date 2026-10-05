@@ -87,7 +87,9 @@ The extension does not transmit video, audio, account cookies, or browsing histo
 
 **Contact Email:** Pending.
 
-**Support URL / Homepage URL:** Pending GitHub repository creation.
+**Support URL:** https://github.com/muhammednagy/jupiter-kaks/issues
+
+**Homepage URL:** https://github.com/muhammednagy/jupiter-kaks
 
 ## Version History
 
