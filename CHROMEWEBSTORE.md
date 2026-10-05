@@ -1,7 +1,8 @@
 # Chrome Web Store Listing — Jupiter Kaks
 
 > Last Updated: 2026-10-06
-> Draft metadata only. This extension has not been submitted to the Chrome Web Store.
+> Package 1.3.0 uploaded as a draft. This extension has not been submitted for review yet.
+> Store item ID: `nedjmeflmanahemabecplmjbdjcmopoj`
 
 ## Store Listing
 
@@ -21,7 +22,7 @@ Caption text is sent to the University of Tartu’s Neurotõlge service for tran
 
 Jupiter Kaks is an independent project, unaffiliated with ERR or the University of Tartu.
 
-**Category:** Accessibility
+**Category:** Education
 
 **Single Purpose:** Show Jupiter’s existing Estonian captions alongside English translations.
 
@@ -31,13 +32,14 @@ Jupiter Kaks is an independent project, unaffiliated with ERR or the University 
 
 | Asset | Dimensions | Status | Filename |
 |-------|------------|--------|----------|
-| Store icon | 128×128 PNG | Not created | — |
-| Bilingual playback screenshot | 1280×800 or 640×400 | Not created | — |
+| Store icon | 128×128 PNG | Ready, uploaded | icons/icon-128.png |
+| Small promotional tile | 440×280 RGB PNG | Ready, uploaded | store-assets/promo-440x280.png |
+| Bilingual playback screenshot | 1280×800 or 640×400 | Capture pending | — |
 | Popup screenshot | 1280×800 or 640×400 | Not created | — |
 
 ### Screenshot Notes
 
-Capture both subtitle languages during playback and the popup’s preparation progress. Obtain permission for any broadcast imagery used in store assets. The manifest currently omits icon references.
+Capture both subtitle languages during playback and the popup’s preparation progress. Icons and promotional artwork are original geometric designs. The manifest includes icons at 16, 32, 48, and 128 pixels.
 
 ## Permissions Justification
 
@@ -73,19 +75,21 @@ The extension does not transmit video, audio, account cookies, or browsing histo
 
 ## Privacy Policy
 
-**Privacy Policy URL:** Pending. README.md documents current behavior; a complete public privacy policy is required before store submission.
+**Privacy Policy URL:** https://github.com/muhammednagy/jupiter-kaks/blob/main/PRIVACY.md
+
+Fresh installs start with English off. The popup explains that enabling English sends upcoming caption text to Neurotõlge before the user enables it. Previously saved preferences survive updates.
 
 ## Distribution
 
-**Store visibility:** Undecided. The GitHub repository is intended to be public.
+**Store visibility:** Public.
 
 **Regions:** Undecided.
 
 ## Developer Info
 
-**Publisher Name:** Pending.
+**Publisher Name:** Nagy Salem.
 
-**Contact Email:** Pending.
+**Contact Email:** me@muhnagy.com (the active publisher account).
 
 **Support URL:** https://github.com/muhammednagy/jupiter-kaks/issues
 
@@ -95,6 +99,7 @@ The extension does not transmit video, audio, account cookies, or browsing histo
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.3.0 | 2026-10-06 | Add original icons, caption-sharing disclosure, English off for new installs, public privacy policy, and clean packaging script. | Uploaded draft |
 | 1.2.1 | 2026-10-06 | Rename to Jupiter Kaks; prepare project documentation for GitHub. | Local draft |
 | 1.2.0 | 2026-10-06 | Use Neurotõlge batch translation with persistent cooldowns. | Local |
 | 1.1.0 | 2026-10-06 | Prepare English captions ahead of playback, including while paused. | Local |
@@ -109,3 +114,11 @@ The extension relies on Jupiter’s current player structure. Shows without sele
 ### Rejection History
 
 No store submission or review yet.
+
+## Reviewer Test Instructions
+
+No login or API key is required. Open https://jupiter.err.ee/1038319/esimene-stuudio or https://jupiter.err.ee/1038278/aktuaalne-kaamera. Select the Estonian subtitle track in the player (sometimes labeled Vaegkuuljad). Open Jupiter Kaks from the Chrome toolbar, read the caption-sharing notice, and enable English translations. Leave the player paused for a few seconds; the popup should show captions translated ahead. Play the show to see Estonian in white and English in yellow. Check seeking, fullscreen, subtitle size/position, and switching English off to restore the original captions. If a broadcast is unavailable in your region, use another publicly accessible Jupiter episode with selectable Estonian captions.
+
+## Package
+
+Run `python3 scripts/package-extension.py` to produce `jupiter-kaks-v1.3.0.zip`. The archive contains only the 12 runtime files, including icons; development files, screenshots, privacy documents, and Git metadata are excluded. `npm test` passes 11 offline tests and `npm run check` passes. Live validation confirmed 547 / 547 captions prepared on Aktuaalne kaamera and bilingual playback with the release popup disclosure.

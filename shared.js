@@ -1,6 +1,6 @@
 /* Shared by the popup, content script, and service worker. No build step. */
 (() => {
-  const defaults = Object.freeze({ enabled: true, fontSize: 24, bottom: 12 });
+  const defaults = Object.freeze({ enabled: false, fontSize: 24, bottom: 12 });
   function normalize(text) {
     return String(text ?? "").replace(/\s+/gu, " ").trim();
   }

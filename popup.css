@@ -18,3 +18,4 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 button { font: inherit; border: 1px solid #435772; border-radius: 6px; color: #d9e4f1; background: transparent; padding: 7px 9px; cursor: pointer; }
 button:hover { background: #243b52; }
 button:focus-visible, input:focus-visible { outline: 2px solid #ffe289; outline-offset: 3px; }
+.privacy a { color: #ffe289; }

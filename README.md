@@ -14,6 +14,7 @@ Report bugs or suggest improvements in [GitHub Issues](https://github.com/muhamm
 4. Click **Load unpacked** and select the downloaded folder containing `manifest.json`.
 5. Refresh any already-open Jupiter page.
 6. Open a show and turn on **Estonian subtitles** using Jupiter's subtitle button. Some shows label this track **Vaegkuuljad** (captions for hearing-impaired viewers).
+7. Click Jupiter Kaks in Chrome's toolbar and enable **English translations**. The popup explains caption sharing before you enable it. New installations start with English off; saved preferences are retained on updates.
 
 Give the extension a few seconds to prepare English before starting playback. Preparation continues while paused; the popup shows how many captions are ready.
 
@@ -33,6 +34,8 @@ The free public translation service can be unavailable or throttle requests. HTT
 
 Caption text, including captions not yet watched, is sent to TartuNLP's Neurotõlge service. See their [data protection policy](https://www.tartunlp.ai/andmekaitsetingimused). Video/audio, cookies, account details, and browsing history are not sent by this extension. It runs only on `https://jupiter.err.ee/*` and stores settings and translations locally. Clearing the cache removes saved translations; currently open player tabs retain their temporary in-memory translations until refreshed.
 
+See the full [Jupiter Kaks privacy policy](PRIVACY.md).
+
 Select an Estonian caption track: the translator always assumes Estonian input. Shows without selectable captions, burned-in subtitles, cross-origin embedded players, casting, and video-only picture-in-picture are not supported. This extension does not generate subtitles from audio or change content availability. Machine translations may contain errors.
 
 ## Development
@@ -45,5 +48,7 @@ npm run check
 ```
 
 After editing content scripts or the service worker, reload the extension at `chrome://extensions`, then refresh Jupiter.
+
+Create a clean store package with `python3 scripts/package-extension.py`. The ZIP includes only runtime files and icons. Original icon and promotional artwork can be regenerated with `python3 scripts/generate-assets.py` using Pillow; this helper is not needed to run the extension.
 
 Chrome's [extension installation guide](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load_an_unpacked_extension) explains loading an unpacked extension. The [content scripts documentation](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts) describes the isolated and main execution worlds; [network request documentation](https://developer.chrome.com/docs/extensions/develop/concepts/network-requests) explains why translation runs in the service worker.

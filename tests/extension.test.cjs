@@ -17,7 +17,7 @@ test("translation arrays require one nonempty result per caption", () => {
   assert.equal(shared.normalize("  Tere\n õhtust. "), "Tere õhtust.");
 });
 
-function worker(fetch, data = {}) {
+function worker(fetch, data = { settings: { enabled: true } }) {
   let listener;
   let context;
   const chrome = {
@@ -105,6 +105,20 @@ test("disabled extension and invalid senders cannot trigger translations or chan
   await w.send({ type: "settings:set", settings: { enabled: false } }, w.popup);
   assert.match((await w.send({ type: "translate", text: "Tere." })).error, /turned off/);
   assert.equal(calls, 0);
+});
+
+test("new installations do not send captions before English is explicitly enabled", async () => {
+  let calls = 0;
+  const w = worker(async () => {
+    calls++;
+    return { ok: true, status: 200, json: async () => ({ result: ["Hello."] }) };
+  }, {});
+  assert.equal((await w.send({ type: "settings:get" })).settings.enabled, false);
+  assert.match((await w.send({ type: "translate", text: "Tere." })).error, /turned off/);
+  assert.equal(calls, 0);
+  await w.send({ type: "settings:set", settings: { enabled: true } }, w.popup);
+  assert.equal((await w.send({ type: "translate", text: "Tere." })).text, "Hello.");
+  assert.equal(calls, 1);
 });
 
 function contentHarness(fetch) {
