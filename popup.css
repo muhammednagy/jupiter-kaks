@@ -1,0 +1,20 @@
+:root { color-scheme: dark; font: 14px/1.5 system-ui, sans-serif; background: #101b28; color: #eff4fa; }
+body { width: 330px; margin: 0; padding: 20px; }
+header { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; }
+.logo { background: #243b52; color: #fff; font-size: 13px; line-height: 1.25; text-align: center; padding: 9px 12px; border-radius: 11px; }
+.logo b { color: #ffe289; }
+h1 { font-size: 19px; margin: 0; letter-spacing: -.3px; }
+header p { color: #aebed0; margin: 2px 0 0; font-size: 12px; }
+.switch { display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+input[type=checkbox] { width: 19px; height: 19px; accent-color: #ffe289; cursor: pointer; }
+#status { background: #1c2d40; border-radius: 8px; padding: 11px; font-size: 12px; color: #ccd9e8; margin: 13px 0 20px; }
+.slider { display: flex; justify-content: space-between; margin-top: 14px; }
+output { color: #ffe289; }
+input[type=range] { width: 100%; margin: 9px 0 0; accent-color: #ffe289; }
+.help { border-top: 1px solid #304156; margin-top: 23px; padding-top: 17px; font-size: 12px; }
+.help p { margin: 5px 0 14px; color: #ccd9e8; }
+.privacy { font-size: 11px; color: #99aac0; }
+footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; font-size: 11px; color: #99aac0; }
+button { font: inherit; border: 1px solid #435772; border-radius: 6px; color: #d9e4f1; background: transparent; padding: 7px 9px; cursor: pointer; }
+button:hover { background: #243b52; }
+button:focus-visible, input:focus-visible { outline: 2px solid #ffe289; outline-offset: 3px; }

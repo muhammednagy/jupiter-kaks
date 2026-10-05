@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jupiter Kaks</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header><span class="logo" aria-hidden="true">ET<br><b>EN</b></span><div><h1>Jupiter Kaks</h1><p>Estonian + English, together</p></div></header>
+  <label class="switch"><span>English translations</span><input id="enabled" type="checkbox" checked></label>
+  <div id="status" role="status">Connecting to the player…</div>
+  <label class="slider" for="fontSize">Subtitle size <output id="fontSizeValue">24 px</output></label>
+  <input id="fontSize" type="range" min="14" max="44" step="1" value="24">
+  <label class="slider" for="bottom">Height above bottom <output id="bottomValue">12%</output></label>
+  <input id="bottom" type="range" min="5" max="40" step="1" value="12">
+  <section class="help"><strong>How to watch</strong><p>Open a Jupiter show and turn on Estonian subtitles. English is prepared ahead, even while paused, and appears underneath in yellow. Give it a few seconds to prepare before pressing play.</p></section>
+  <p class="privacy">Free, no API key. Caption text is sent to the University of Tartu’s Neurotõlge service; translations are saved on this device. Preparation resumes automatically after temporary service limits. Machine translations can make mistakes.</p>
+  <footer><span id="cacheCount"></span><button id="clearCache" type="button">Clear translations</button></footer>
+  <script src="shared.js"></script><script src="popup.js"></script>
+</body>
+</html>
