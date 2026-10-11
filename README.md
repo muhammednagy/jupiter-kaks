@@ -2,7 +2,7 @@
 
 **Two languages. One show.** “Kaks” means “two” in Estonian.
 
-A Chrome extension that shows Jupiter's Estonian subtitles with English translations underneath. Free, no account, no API key, no build tools required. This is an independent project, unaffiliated with ERR or the University of Tartu.
+A Chrome extension that shows Estonian subtitles from [Jupiter](https://jupiter.err.ee/) and [Lasteekraan](https://lasteekraan.err.ee/) with English translations underneath. Free, no account, no API key, no build tools required. This is an independent project, unaffiliated with ERR or the University of Tartu.
 
 Report bugs or suggest improvements in [GitHub Issues](https://github.com/muhammednagy/jupiter-kaks/issues).
 
@@ -12,8 +12,8 @@ Report bugs or suggest improvements in [GitHub Issues](https://github.com/muhamm
 2. Open `chrome://extensions` in Chrome.
 3. Enable **Developer mode** at the top right.
 4. Click **Load unpacked** and select the downloaded folder containing `manifest.json`.
-5. Refresh any already-open Jupiter page.
-6. Open a show and turn on **Estonian subtitles** using Jupiter's subtitle button. Some shows label this track **Vaegkuuljad** (captions for hearing-impaired viewers).
+5. Refresh any already-open Jupiter or Lasteekraan page.
+6. Open a show and turn on **Estonian subtitles** using the player's subtitle button on either site. Some shows label this track **Vaegkuuljad** (captions for hearing-impaired viewers).
 7. Click Jupiter Kaks in Chrome's toolbar and enable **English translations**. The popup explains caption sharing before you enable it. New installations start with English off; saved preferences are retained on updates.
 
 Give the extension a few seconds to prepare English before starting playback. Preparation continues while paused; the popup shows how many captions are ready.
@@ -22,17 +22,17 @@ The overlay displays Estonian in white and English in yellow. Both stay inside t
 
 ## How it works
 
-- Jupiter currently uses Shaka Player and renders captions in `.shaka-text-container`. The extension reads the selected captions and replaces their visible presentation with a two-language overlay.
+- Jupiter and Lasteekraan currently use Shaka Player and render captions in `.shaka-text-container`. The extension reads the selected captions and replaces their visible presentation with a two-language overlay.
 - A small page-world bridge reads Shaka's selected subtitle segment index. The extension downloads available VTT segments, deduplicates captions spanning multiple segments, and translates them ahead in batches of up to 12. Preparation continues while paused, starting at the current position and then working through the episode. After seeking, the next batch prioritizes the new playback position.
 - Translation uses the University of Tartu's [Neurotõlge public API](https://api.tartunlp.ai/translation/docs), with Estonian (`et`) as the source and English (`en`) as the target. The API accepts arrays of captions and returns translations in matching order. Invalid or incomplete batches are rejected to avoid mixing up captions.
 - Requests run in the extension's service worker, with network permission only for `https://api.tartunlp.ai/`. One batch runs at a time, with at least 1.5 seconds between request starts. No personal API key is required.
-- Up to 1,500 translations are cached on this device to reduce repeated requests. Late responses never replace a different caption. Turning the extension off restores Jupiter's captions.
+- Up to 1,500 translations are cached on this device to reduce repeated requests. Late responses never replace a different caption. Turning the extension off restores the player's original captions.
 
 ## Limits and privacy
 
 The free public translation service can be unavailable or throttle requests. HTTP 429/503 triggers an increasing cooldown, saved across worker restarts, and preparation resumes automatically. If English is unavailable, the Estonian caption remains visible with a short error. Give preparation a few seconds before starting; seeking beyond prepared captions can temporarily show “Translating…”. Shaka's internal manifest structure can change. If advance loading is unavailable, the extension falls back to translating the displayed caption.
 
-Caption text, including captions not yet watched, is sent to TartuNLP's Neurotõlge service. See their [data protection policy](https://www.tartunlp.ai/andmekaitsetingimused). Video/audio, cookies, account details, and browsing history are not sent by this extension. It runs only on `https://jupiter.err.ee/*` and stores settings and translations locally. Clearing the cache removes saved translations; currently open player tabs retain their temporary in-memory translations until refreshed.
+Caption text, including captions not yet watched, is sent to TartuNLP's Neurotõlge service. See their [data protection policy](https://www.tartunlp.ai/andmekaitsetingimused). Video/audio, cookies, account details, and browsing history are not sent by this extension. It runs only on `https://jupiter.err.ee/*` and `https://lasteekraan.err.ee/*` and stores settings and translations locally. Clearing the cache removes saved translations; currently open player tabs retain their temporary in-memory translations until refreshed.
 
 See the full [Jupiter Kaks privacy policy](PRIVACY.md).
 
@@ -47,7 +47,7 @@ npm test
 npm run check
 ```
 
-After editing content scripts or the service worker, reload the extension at `chrome://extensions`, then refresh Jupiter.
+After editing content scripts or the service worker, reload the extension at `chrome://extensions`, then refresh Jupiter or Lasteekraan.
 
 Create a clean store package with `python3 scripts/package-extension.py`. The ZIP includes only runtime files and icons. Original icon and promotional artwork can be regenerated with `python3 scripts/generate-assets.py` using Pillow; this helper is not needed to run the extension.
 

@@ -29,8 +29,8 @@ const ready = (async () => {
   rateStrikes = Number(throttle.rateStrikes) || 0;
 })();
 
-function isJupiter(sender) {
-  try { return new URL(sender.url).origin === "https://jupiter.err.ee"; } catch { return false; }
+function isSupportedSite(sender) {
+  try { return ["https://jupiter.err.ee", "https://lasteekraan.err.ee"].includes(new URL(sender.url).origin); } catch { return false; }
 }
 function isPopup(sender) {
   return sender.id === chrome.runtime.id && sender.url === chrome.runtime.getURL("popup.html");
@@ -150,7 +150,7 @@ async function requestTranslation(text, priority = false) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!message || sender.id !== chrome.runtime.id) return;
   const popup = isPopup(sender);
-  if (!popup && !isJupiter(sender)) return;
+  if (!popup && !isSupportedSite(sender)) return;
   let task;
   if (message.type === "translate") {
     task = requestTranslation(message.text, message.priority === true);

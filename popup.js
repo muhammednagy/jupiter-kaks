@@ -15,9 +15,9 @@
       const reply = await chrome.tabs.sendMessage(tab.id, { type: "status:get" });
       const preparation = reply.total ? `${reply.prepared} / ${reply.total} captions translated ahead${reply.loading ? " · Loading subtitles…" : ""}.` :
         reply.active ? "Captions detected. English translations are on." : reply.players ?
-        "Loading subtitles. Turn on Estonian captions in Jupiter’s player." : "Start a Jupiter show to see both languages.";
+        "Loading subtitles. Turn on Estonian captions in the player." : "Start a Jupiter or Lasteekraan show to see both languages.";
       $("status").textContent = reply.error ? `${preparation} ${reply.error}` : preparation;
-    } catch { $("status").textContent = "Open a show on jupiter.err.ee. Refresh the page after installing."; }
+    } catch { $("status").textContent = "Open a show on jupiter.err.ee or lasteekraan.err.ee. Refresh the page after installing."; }
   }
   function save() {
     const value = { enabled: $("enabled").checked, fontSize: Number($("fontSize").value), bottom: Number($("bottom").value) };

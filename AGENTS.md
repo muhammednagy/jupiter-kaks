@@ -2,7 +2,8 @@
 
 ## Project
 
-Jupiter Kaks is a Manifest V3 Chrome extension for `https://jupiter.err.ee/*`.
+Jupiter Kaks is a Manifest V3 Chrome extension for `https://jupiter.err.ee/*` and
+`https://lasteekraan.err.ee/*`.
 It shows existing Estonian captions in white with English translations underneath
 in yellow. English must be prepared ahead of playback, including while paused.
 Translation uses the University of Tartu's free Neurotõlge service without a
@@ -26,7 +27,7 @@ refactors when fixing a focused issue.
 - `popup.html`, `popup.css`, `popup.js`: preparation progress and display controls.
 - `tests/extension.test.cjs`: Node tests with mocked Chrome APIs and player state.
 - `README.md`: installation, behavior, limitations, and privacy documentation.
-- `CHROMEWEBSTORE.md`: draft store metadata; the extension is not store-published.
+- `CHROMEWEBSTORE.md`: store metadata and release status; version 1.3.0 is published.
 - `publish-github.sh`: initial repository creation helper, not a release command.
 
 ## Behavior to preserve
@@ -52,7 +53,7 @@ refactors when fixing a focused issue.
 
 - Keep Manifest V3 and compatibility with the manifest's minimum Chrome version.
   Do not add framework tooling or new permissions without a feature requiring them.
-- Keep scripts scoped to Jupiter and translation network access scoped to
+- Keep scripts scoped to Jupiter and Lasteekraan and translation network access scoped to
   `https://api.tartunlp.ai/*`. Subtitle segment URLs must remain restricted to HTTPS
   ERR domains and validated before fetching.
 - The page-world bridge reads player state; it must not modify playback or
@@ -85,7 +86,7 @@ tests offline with mocked service responses so they do not consume public quotas
 For documentation-only changes, review the content and run `git diff --check`.
 
 For player, caption, or popup behavior changes, reload the unpacked extension at
-`chrome://extensions`, refresh Jupiter, and verify preparation while paused,
+`chrome://extensions`, refresh Jupiter or Lasteekraan, and verify preparation while paused,
 playback, seeking, fullscreen, and the English toggle as relevant. Do not claim
 browser validation unless it was actually performed.
 
