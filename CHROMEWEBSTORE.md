@@ -4,7 +4,7 @@
 > Version 1.3.0 is published publicly. Publisher contact email is verified. Status confirmed in the developer dashboard on 2026-10-11.
 > Store item ID: `nedjmeflmanahemabecplmjbdjcmopoj`
 
-> Version 1.4.0 adds Lasteekraan support and is packaged for the store update. The published 1.3.0 copy supports Jupiter only.
+> Version 1.4.0 was uploaded and submitted for review on 2026-10-11, with automatic publication after approval enabled. The published 1.3.0 copy supports Jupiter only until the update is approved.
 
 ## Store Listing
 
@@ -59,6 +59,8 @@ The screenshot captures actual bilingual captions on Esimene stuudio at 2:15, us
 | https://jupiter.err.ee/* | content_scripts matches | Read the player’s Estonian captions and subtitle segments, and display both languages inside the player. |
 | https://lasteekraan.err.ee/* | content_scripts matches | Read the player’s Estonian captions and subtitle segments, and display both languages inside the player. |
 
+**Host permission justification saved in the dashboard:** Access to https://jupiter.err.ee/* and https://lasteekraan.err.ee/* is needed to read the player’s existing Estonian captions and subtitle segment metadata and display the bilingual overlay inside the player. Access to https://api.tartunlp.ai/* is needed to send caption text to the University of Tartu’s Neurotõlge service and receive English translations after the user enables English. No other sites are accessed by extension scripts.
+
 ## Privacy & Data Use
 
 **Does the extension collect user data?** Yes: it processes website caption text and stores preferences and translations locally.
@@ -109,7 +111,7 @@ Fresh installs start with English off. The popup explains that enabling English 
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
-| 1.4.0 | 2026-10-11 | Support Lasteekraan alongside Jupiter; update site access, popup guidance, and privacy wording. | Packaged for upload |
+| 1.4.0 | 2026-10-11 | Support Lasteekraan alongside Jupiter; update site access, popup guidance, and privacy wording. | Submitted for review; automatic publication after approval |
 | 1.3.0 | 2026-10-06 | Add original icons, caption-sharing disclosure, English off for new installs, public privacy policy, and clean packaging script. | Published, public |
 | 1.2.1 | 2026-10-06 | Rename to Jupiter Kaks; prepare project documentation for GitHub. | Local draft |
 | 1.2.0 | 2026-10-06 | Use Neurotõlge batch translation with persistent cooldowns. | Local |
@@ -132,8 +134,12 @@ No login or API key is required. Open https://jupiter.err.ee/1038319/esimene-stu
 
 For Lasteekraan, repeat these checks at https://lasteekraan.err.ee/1610147252/veider-kamp with its Vaegkuuljad track, or another available episode with selectable Estonian captions.
 
+**500-character dashboard test instructions:** No login/API key. Test https://jupiter.err.ee/1038319/esimene-stuudio and https://lasteekraan.err.ee/1610147252/veider-kamp. Enable Estonian captions (Vaegkuuljad). Open Jupiter Kaks, read the sharing notice, enable English. Wait paused: preparation count rises. Play: white Estonian/yellow English. Test seeking, fullscreen, size/height controls. Turn English off: native captions return. If blocked, choose another episode with selectable Estonian captions.
+
 ## Package
 
 Run `python3 scripts/package-extension.py` to produce `jupiter-kaks-v1.4.0.zip`. The archive contains only the 12 runtime files, including icons; development files, screenshots, privacy documents, and Git metadata are excluded. The 1.3.0 validation confirmed 11 offline tests and JavaScript syntax checks. Its live validation confirmed 547 / 547 captions prepared on Aktuaalne kaamera and bilingual playback with the release popup disclosure.
 
 Version 1.4.0 passes 16 offline tests and `npm run check`. Live Lasteekraan validation on Veider Kamp confirmed preparation advancing from 148 to 232 captions while paused, all 300 captions prepared, bilingual playback, both languages visible in fullscreen, and English off restoring native Estonian captions. The local unpacked copy was disabled after testing so it does not run alongside the installed 1.3.0 copy.
+
+The submitted ZIP contains 12 runtime files and is 22,801 bytes. SHA-256: `adbe9829e715ed0519678292f3da0979c70b1fd3a8a728dae1857ae6cbf4e7d2`. The dashboard confirmed draft package 1.4.0, the updated listing and permission justification, saved test instructions dated October 11, and successful review submission. The updated public privacy policy was pushed to GitHub before submission.
